@@ -2607,7 +2607,7 @@ void UTIL_LoadActivityRemapFile( const char *filename, const char *section, CUtl
 		return;
 	}
 
-	KeyValues *pkvFile = new KeyValues( section );
+	KeyValuesAD pkvFile( section );
 
 	if ( pkvFile->LoadFromFile( filesystem, filename, NULL ) )
 	{
@@ -2661,8 +2661,6 @@ void UTIL_LoadActivityRemapFile( const char *filename, const char *section, CUtl
 		actRemap.m_cachedActivityRemaps.AddVectorToTail( entries );
 		m_ActivityRemapDatabase.Insert( filename, actRemap );
 	}
-
-	pkvFile->deleteThis();
 }
 
 int ActivityList_HighestIndex()
