@@ -1,0 +1,21 @@
+"vpc_cache"
+{
+	"CacheVersion"		"1"
+	"win64"
+	{
+		"CRCFile"		"server_win64_tf.vcxproj.vpc_crc"
+		"OutputFiles"
+		{
+			"0"		"server_win64_tf.vcxproj"
+			"1"		"server_win64_tf.vcxproj.filters"
+		}
+	}
+	"linux64"
+	{
+		"CRCFile"		"server_linux64_tf.ninja_inc.vpc_crc"
+		"OutputFiles"
+		{
+			"0"		"server_linux64_tf.ninja_inc"
+		}
+	}
+}

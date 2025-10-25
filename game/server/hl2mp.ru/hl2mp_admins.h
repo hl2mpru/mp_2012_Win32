@@ -1,0 +1,18 @@
+#define FL_ADMIN (1<<0)
+#define FL_ADMIN_PICKUP (1<<1)
+#define FL_ADMIN_PICKUP_CL_NPC (1<<2)
+#define FL_ADMIN_PICKUP_NPC (1<<3)
+#define FL_ADMIN_PICKUP_VEHICLE (1<<4)
+#define FL_ADMIN_PICKUP_COMBINE_BALL (1<<5)
+#define FL_ADMIN_FF (1<<6)
+#define FL_ADMIN_FF_NPC (1<<7)
+#define FL_ADMIN_VEHICLE (1<<8)
+#define FL_ADMIN_MERCHANT (1<<9)
+#define FL_ADMIN_MERCHANT_FREE (1<<10)
+#define FL_ADMIN_MERCHANT_NOLIMIT (1<<11)
+#define FL_ADMIN_NOAFK (1<<12)
+#define FL_ADMIN_TOKEN_HEALER (1<<13)
+#define FL_ADMIN_HEALTH_BAR (1<<14)
+#define FL_ADMIN_ENEMY_HEALTH (1<<15)
+
+bool IsAdmin( CBaseEntity *pEntity, int pFlags );
