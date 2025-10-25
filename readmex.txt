@@ -9,3 +9,4 @@ make -j 4 -f server_linux32_hl2mp.mak
 
 Windows
 Visual Studio 2012 Express Desktop
+Visual Studio 2022
