@@ -12963,7 +12963,7 @@ void CAI_BaseNPC::ParseScriptedNPCInteractions( void )
 		return;
 
 	// Parse the model's key values and find any dynamic interactions
-	KeyValues *modelKeyValues = new KeyValues("");
+	KeyValuesAD modelKeyValues("");
 	CUtlBuffer buf( 1024, 0, CUtlBuffer::TEXT_BUFFER );
 
 	if (! modelinfo->GetModelKeyValue( GetModel(), buf ))
@@ -13139,8 +13139,6 @@ void CAI_BaseNPC::ParseScriptedNPCInteractions( void )
 			}
 		}
 	}
-
-	modelKeyValues->deleteThis();
 }
 
 //-----------------------------------------------------------------------------
