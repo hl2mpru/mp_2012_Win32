@@ -9,6 +9,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+Release_Win32_hl2mp
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
