@@ -655,7 +655,7 @@ bool SaveGameState( bool bTransition, CSaveRestoreData **ppReturnSaveData )
 	filesystem->AsyncWrite( name, pBuffer, nBytesStateFile, true, false );
 	filesystem->AsyncFinishAllWrites();
 	
-	pBuffer = NULL;
+	delete[] static_cast<byte*>(pBuffer);
 	
 	EntityPatchWrite( pSaveData, GetSaveGameMapName( STRING( gpGlobals->mapname) ) );
 	if ( !ppReturnSaveData )
