@@ -299,7 +299,7 @@ void SaveClientState( CBasePlayer *pPlayer, int pFlags = NULL )
 
 			char szBaseName[_MAX_PATH];
 			V_snprintf( szBaseName, sizeof( szBaseName ), "save/%s", pPopFileName );
-			KeyValues *manifest = new KeyValues( "ClientSaveRestore" );
+			KeyValuesAD manifest( "ClientSaveRestore" );
 			if( !manifest->LoadFromFile( filesystem, szBaseName ) )
 				return;
 
@@ -308,7 +308,6 @@ void SaveClientState( CBasePlayer *pPlayer, int pFlags = NULL )
 				pClient->SetInt("pFlags", pFlags );
 
 			manifest->SaveToFile( filesystem, szBaseName );
-			manifest->deleteThis();
 			pPopFileName = filesystem->FindNext( popHandle );
 		}
 		filesystem->FindClose( popHandle );
@@ -317,7 +316,7 @@ void SaveClientState( CBasePlayer *pPlayer, int pFlags = NULL )
 
 	bool result = false;
 
-	KeyValues *manifest = new KeyValues( UTIL_VarArgs("%llu", pPlayer->GetSteamIDAsUInt64() ) );
+	KeyValuesAD manifest( UTIL_VarArgs("%llu", pPlayer->GetSteamIDAsUInt64() ) );
 
 	if( st_szNextMap[0] != '\0' )
 		manifest->SetString("mapname", st_szNextMap );
@@ -327,7 +326,7 @@ void SaveClientState( CBasePlayer *pPlayer, int pFlags = NULL )
 	if( pPlayer->IsAlive() ) {
 		result = true;
  
-		KeyValues *pClient = new KeyValues("pClient");
+		KeyValuesAD pClient("pClient");
 		pClient->SetUint64("SteamID64", pPlayer->GetSteamIDAsUInt64() );
 		/*if( pPlayer->GetGroundEntity() == NULL ) {
 			pClient->SetString("origin", VectorToString( pPlayer->GetAbsOrigin() ) );
@@ -346,14 +345,14 @@ void SaveClientState( CBasePlayer *pPlayer, int pFlags = NULL )
 
 		manifest->AddSubKey( pClient );
 
-		KeyValues *pWeapons = new KeyValues("pWeapons");
+		KeyValuesAD pWeapons("pWeapons");
 		for (int i=0; i<MAX_WEAPONS; ++i) 
 		{
 			CBaseCombatWeapon *pWeapon = pPlayer->GetWeapon(i);
 			if ( !pWeapon )
 				continue;
 
-			KeyValues *pKV = new KeyValues( pWeapon->GetClassname() );
+			KeyValuesAD pKV( pWeapon->GetClassname() );
 			pKV->SetString("classname", pWeapon->GetClassname() );
 			pKV->SetString("section", pWeapon->GetSectionName() );
 
@@ -382,7 +381,7 @@ void SaveClientState( CBasePlayer *pPlayer, int pFlags = NULL )
 		manifest->AddSubKey( pWeapons );
 	}
 
-	KeyValues *pEntity = new KeyValues("pEntity");
+	KeyValuesAD pEntity("pEntity");
 	CBaseEntity *ent = NULL;
 	while ((ent = gEntList.NextEnt(ent)) != NULL)
 	{
@@ -391,7 +390,7 @@ void SaveClientState( CBasePlayer *pPlayer, int pFlags = NULL )
 
 		result = true;
 
-		KeyValues *pKV = new KeyValues( UTIL_VarArgs( "%s_%d", ent->GetClassname(), ENTINDEX( ent ) ) );
+		KeyValuesAD pKV( UTIL_VarArgs( "%s_%d", ent->GetClassname(), ENTINDEX( ent ) ) );
 		pKV->SetString("classname", ent->GetClassname() );
 		pKV->SetString("origin", VectorToString( ent->GetAbsOrigin() ) );
 		pKV->SetString("angles", VectorToString( ent->GetAbsAngles() ) );
@@ -414,15 +413,13 @@ void SaveClientState( CBasePlayer *pPlayer, int pFlags = NULL )
 
 	if( result )
 		manifest->SaveToFile( filesystem, UTIL_VarArgs("save/%llu.hl2", pPlayer->GetSteamIDAsUInt64() ) );
-
-	manifest->deleteThis();
 }
 
 void RestoreClientState( CBasePlayer *pPlayer ) {
 	if( !pPlayer )
 		return;
 
-	KeyValues *manifest = new KeyValues( UTIL_VarArgs("%llu", pPlayer->GetSteamIDAsUInt64() ) );
+	KeyValuesAD manifest( UTIL_VarArgs("%llu", pPlayer->GetSteamIDAsUInt64() ) );
 	if( !manifest->LoadFromFile( filesystem, UTIL_VarArgs("save/%llu.hl2", pPlayer->GetSteamIDAsUInt64() ) ) )
 		return;
 
@@ -553,7 +550,6 @@ void RestoreClientState( CBasePlayer *pPlayer ) {
 			}
 		}
 	}
-	manifest->deleteThis();
 }
 
 bool SaveGameState( bool bTransition, CSaveRestoreData **ppReturnSaveData )
