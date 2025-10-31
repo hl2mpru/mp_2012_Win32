@@ -79,6 +79,7 @@ void ism::TpAllPlayer( Vector newPosition, QAngle newAngles  )
 		if( pPlayer && pPlayer->IsConnected() && pPlayer->IsAlive() ) {
 			pPlayer->LeaveVehicle();
 			pPlayer->SetGroundEntity( NULL );
+			newPosition.z += 5.0f;
 			pPlayer->SetAbsOrigin( newPosition );
 			//pPlayer->SetAbsAngles( newAngles );
 			//pPlayer->Teleport( &newPosition, &newAngles, NULL );
