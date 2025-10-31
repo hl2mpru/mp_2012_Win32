@@ -51,7 +51,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <TargetName>server</TargetName>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <PreferredToolArchitecture>x64</PreferredToolArchitecture>
   </PropertyGroup>
@@ -1298,7 +1298,9 @@ copy /Y "$(OutDir)$(TargetName)$(TargetExt)" "D:\Debian\Steam\hl2mp-win32\hl2mp\
     <ClCompile Include="func_ladder_endpoint.cpp" />
     <ClCompile Include="func_lod.cpp" />
     <ClCompile Include="hl2mp.ru\hl2mp_worldtext.cpp" />
-    <ClCompile Include="hl2mp.ru\stripper\parser.cpp" />
+    <ClCompile Include="hl2mp.ru\stripper\parser.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="hl2\Func_Monitor.cpp" />
     <ClCompile Include="func_movelinear.cpp" />
     <ClCompile Include="func_occluder.cpp" />

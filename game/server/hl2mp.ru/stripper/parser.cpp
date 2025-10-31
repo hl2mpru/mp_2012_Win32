@@ -709,8 +709,8 @@ void Stripper::ApplyFileFilter(const char *file)
                     re = pcre_compile(&(_val[1]), PCRE_CASELESS, &error, &err_offs, NULL);
                     if (!re)
                     {
-                        Msg("File %s parse error (line %d):", file, line);
-                        Msg("Expression(%s): At pos %d, %s", _val, err_offs, error);
+                       // Msg("File %s parse error (line %d):", file, line);
+                        //Msg("Expression(%s): At pos %d, %s", _val, err_offs, error);
                         continue;
                     }
                 }

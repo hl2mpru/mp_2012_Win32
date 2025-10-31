@@ -1989,21 +1989,11 @@
     <ClInclude Include="hl2mp.ru\stripper\parser.h">
       <Filter>Source Files\hl2mp.ru\stripper</Filter>
     </ClInclude>
-    <ClInclude Include="hl2mp.ru\stripper\pcre.h">
-      <Filter>Source Files\hl2mp.ru\stripper</Filter>
-    </ClInclude>
-    <ClInclude Include="hl2mp.ru\stripper\sh_list.h">
-      <Filter>Source Files\hl2mp.ru\stripper</Filter>
-    </ClInclude>
-    <ClInclude Include="hl2mp.ru\stripper\sh_stack.h">
-      <Filter>Source Files\hl2mp.ru\stripper</Filter>
-    </ClInclude>
-    <ClInclude Include="hl2mp.ru\stripper\sh_string.h">
-      <Filter>Source Files\hl2mp.ru\stripper</Filter>
-    </ClInclude>
-    <ClInclude Include="hl2mp.ru\stripper\sh_vector.h">
-      <Filter>Source Files\hl2mp.ru\stripper</Filter>
-    </ClInclude>
+    <ClInclude Include="hl2mp.ru\stripper\pcre.h" />
+    <ClInclude Include="hl2mp.ru\stripper\sh_list.h" />
+    <ClInclude Include="hl2mp.ru\stripper\sh_stack.h" />
+    <ClInclude Include="hl2mp.ru\stripper\sh_string.h" />
+    <ClInclude Include="hl2mp.ru\stripper\sh_vector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gamedll_replay.cpp">
