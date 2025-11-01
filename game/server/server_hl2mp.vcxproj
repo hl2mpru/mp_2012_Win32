@@ -51,9 +51,8 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <TargetName>server</TargetName>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <PreferredToolArchitecture>x64</PreferredToolArchitecture>
-    <PlatformToolset>v145</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings" />
@@ -1928,14 +1927,14 @@ copy /Y "$(OutDir)$(TargetName)$(TargetExt)" "D:\Debian\Steam\hl2mp-win32\hl2mp\
     <ClCompile Include="toolframework_server.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\..\mp_2012_multiarch\lib\public\choreoobjects_vs2022.lib" />
-    <Library Include="..\..\..\mp_2012_multiarch\lib\public\dmxloader_vs2022.lib" />
-    <Library Include="..\..\..\mp_2012_multiarch\lib\public\tier1_vs2022.lib" />
+    <Library Include="..\..\lib\public\choreoobjects.lib" />
+    <Library Include="..\..\lib\public\dmxloader.lib" />
     <Library Include="..\..\lib\public\libpcre.lib" />
     <Library Include="..\..\lib\public\mathlib.lib" />
     <Library Include="..\..\lib\public\particles.lib" />
     <Library Include="..\..\lib\public\steam_api.lib" />
     <Library Include="..\..\lib\public\tier0.lib" />
+    <Library Include="..\..\lib\public\tier1.lib" />
     <Library Include="..\..\lib\public\tier2.lib" />
     <Library Include="..\..\lib\public\tier3.lib" />
     <Library Include="..\..\lib\public\vstdlib.lib" />

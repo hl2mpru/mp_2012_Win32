@@ -4056,13 +4056,13 @@
     <Library Include="..\..\lib\public\vstdlib.lib">
       <Filter>Link Libraries</Filter>
     </Library>
-    <Library Include="..\..\..\mp_2012_multiarch\lib\public\choreoobjects_vs2022.lib">
+    <Library Include="..\..\lib\public\choreoobjects.lib">
       <Filter>Link Libraries</Filter>
     </Library>
-    <Library Include="..\..\..\mp_2012_multiarch\lib\public\dmxloader_vs2022.lib">
+    <Library Include="..\..\lib\public\dmxloader.lib">
       <Filter>Link Libraries</Filter>
     </Library>
-    <Library Include="..\..\..\mp_2012_multiarch\lib\public\tier1_vs2022.lib">
+    <Library Include="..\..\lib\public\tier1.lib">
       <Filter>Link Libraries</Filter>
     </Library>
   </ItemGroup>

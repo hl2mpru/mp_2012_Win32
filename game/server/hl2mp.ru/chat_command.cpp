@@ -34,7 +34,7 @@ int GetPlayerInfo( CBasePlayer *pPlayer ) {
 	PlayerInfo player;
 	player.m_hPlayer = pPlayer;
 	player.SteamID64 = pPlayer->GetSteamIDAsUInt64();
-	player.tpCount = 0;
+	player.tpCount = 5;
 	player.SaveOrigin = vec3_origin;
 	player.flNextMTP = 0.0;
 	player.flNextSave = 0.0;
