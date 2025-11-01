@@ -60,21 +60,15 @@
 // These bones have physics shadows
 const char *pRocketTurretFollowerBoneNames[] =
 {
-	"Root",
+	"Scene_Root",
+	"root",
 	"Base",
 	"Arm_1",
 	"Arm_2",
 	"Arm_3",
 	"Arm_4",
 	"Rot_LR",
-	"Rot_UD",
-	"Gun_casing",
-	"Gun_Barrel_01",
-	"gun_barrel_02",
-	"loader",
-	"missle_01",
-	"missle_02",
-	"panel",
+	"Rot_UD"
 };
 
 class CNPC_RocketTurret : public CAI_BaseNPC, public CDefaultPlayerPickupVPhysics
@@ -639,7 +633,7 @@ void CNPC_RocketTurret::Hl2mpThink( void )
 void CNPC_RocketTurret::Spawn( void )
 { 
 	Precache();
-
+	
 	BaseClass::Spawn();
 
 	SetViewOffset( vec3_origin );
@@ -693,7 +687,7 @@ void CNPC_RocketTurret::Spawn( void )
 
 bool CNPC_RocketTurret::CreateVPhysics( void )
 {
-	//m_BoneFollowerManager.InitBoneFollowers( this, ARRAYSIZE(pRocketTurretFollowerBoneNames), pRocketTurretFollowerBoneNames );
+	m_BoneFollowerManager.InitBoneFollowers( this, ARRAYSIZE(pRocketTurretFollowerBoneNames), pRocketTurretFollowerBoneNames );
 	//BaseClass::CreateVPhysics();
 	VPhysicsInitNormal( SOLID_VPHYSICS, 0, false );
 	return true;
@@ -702,7 +696,7 @@ bool CNPC_RocketTurret::CreateVPhysics( void )
 void CNPC_RocketTurret::UpdateOnRemove( void )
 {
 	LaserOff();
-	//m_BoneFollowerManager.DestroyBoneFollowers();
+	m_BoneFollowerManager.DestroyBoneFollowers();
 	BaseClass::UpdateOnRemove();
 }
 
@@ -1064,6 +1058,9 @@ void CNPC_RocketTurret::RocketDied( void )
 //-----------------------------------------------------------------------------
 void CNPC_RocketTurret::DyingThink( void )
 {
+	if ( PreThink() )
+		return;
+
 	// Make the beam graphics freak out a bit
 	m_iLaserState = 2;
 
@@ -1092,6 +1089,9 @@ void CNPC_RocketTurret::DyingThink( void )
 //-----------------------------------------------------------------------------
 void CNPC_RocketTurret::DeathThink( void )
 {
+	if ( PreThink() )
+		return;
+
 	Vector vForward;
 	AngleVectors( m_vecCurrentAngles, &vForward, NULL, NULL );
 
@@ -1119,6 +1119,9 @@ void CNPC_RocketTurret::UpdateMuzzleMatrix()
 //-----------------------------------------------------------------------------
 void CNPC_RocketTurret::OpeningThink()
 {
+	if ( PreThink() )
+		return;
+
 	if ( PlayerHeald() ) {
 		Disable( true );
 		return;
@@ -1147,6 +1150,9 @@ void CNPC_RocketTurret::OpeningThink()
 //-----------------------------------------------------------------------------
 void CNPC_RocketTurret::ClosingThink()
 {
+	if ( PreThink() )
+		return;
+
 	LaserOff();
 
 	// Require these poses for this animation
@@ -1264,6 +1270,7 @@ bool CNPC_RocketTurret::TestLOS( const Vector& vAimPoint )
 //-----------------------------------------------------------------------------
 bool CNPC_RocketTurret::PreThink( void )
 {
+	m_BoneFollowerManager.UpdateBoneFollowers(this);
 	StudioFrameAdvance();
 	CheckPVSCondition();
 	//Do not interrupt current think function
@@ -1405,22 +1412,22 @@ void CRocket_Turret_Projectile::MissileTouch( CBaseEntity *pOther )
 	// Touched a launcher, and is heading towards that launcher
 	if ( FClassnameIs( pOther, "npc_rocket_turret" ) )
 	{
-		Dissolve( NULL, gpGlobals->curtime + 0.1f, false, ENTITY_DISSOLVE_NORMAL );
-		Vector vBounceVel = Vector( -vVel.x, -vVel.y, 200 );
-		SetAbsVelocity (  vBounceVel * 0.1f );
-		QAngle vBounceAngles;
-		VectorAngles( vBounceVel, vBounceAngles );
-		SetAbsAngles ( vBounceAngles );
-		SetLocalAngularVelocity ( QAngle ( 180, 90, 45 ) );
-		UTIL_Remove ( m_hRocketTrail );
+		//Dissolve( NULL, gpGlobals->curtime + 0.1f, false, ENTITY_DISSOLVE_NORMAL );
+		//Vector vBounceVel = Vector( -vVel.x, -vVel.y, 200 );
+		//SetAbsVelocity (  vBounceVel * 0.1f );
+		//QAngle vBounceAngles;
+		//VectorAngles( vBounceVel, vBounceAngles );
+		//SetAbsAngles ( vBounceAngles );
+		//SetLocalAngularVelocity ( QAngle ( 180, 90, 45 ) );
+		//UTIL_Remove ( m_hRocketTrail );
 
-		SetSolid ( SOLID_NONE );
+		//SetSolid ( SOLID_NONE );
 
-		if( m_hRocketTrail )
-		{
-			m_hRocketTrail->SetLifetime(0.1f);
-			m_hRocketTrail = NULL;
-		}
+		//if( m_hRocketTrail )
+		//{
+		//	m_hRocketTrail->SetLifetime(0.1f);
+		//	m_hRocketTrail = NULL;
+		//}
 
 		return;
 	}

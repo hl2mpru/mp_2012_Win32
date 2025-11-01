@@ -82,8 +82,8 @@ void CChargeToken::Spawn( void )
 	UTIL_SetSize( this, -Vector(1,1,1), Vector(1,1,1) );
 
 	SetMoveType( MOVETYPE_FLY );
-	SetSolid( SOLID_BBOX );
-	SetSolidFlags( FSOLID_TRIGGER | FSOLID_NOT_SOLID );
+	SetSolid( SOLID_VPHYSICS );
+	SetSolidFlags( FSOLID_TRIGGER  );
 	SetGravity( 0.0f );
 
 	// No model but we still need to force this!
@@ -192,6 +192,7 @@ void CChargeToken::SeekThink( void )
 	vecOffset += GetSteerVector( vecDir );
 
 	SetAbsVelocity( ( vecDir * flSpeed ) + vecOffset );
+
 	SetNextThink( gpGlobals->curtime + 0.05f );
 }
 
